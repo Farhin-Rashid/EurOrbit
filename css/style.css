@@ -1,0 +1,40 @@
+:root{
+    --primary-color: #EBF4F6;
+    --secondary-color: #071952;
+    --tertiary-color: #37B7C3;
+}
+
+body {
+    background-color: var(--primary-color);
+}
+
+#header{
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+}
+
+#header-title{
+    color: var(--primary-color) !important;
+}
+
+a:link{
+    color: var(--primary-color);
+}
+
+a:visited{
+    color: var(--tertiary-color);
+}
+
+a:hover{
+    cursor: pointer;
+    color: var(--tertiary-color);
+}
+
+#copyright{
+    color: var(--secondary-color) !important;
+}
+
+#footer{
+    position: absolute;
+    bottom: 0%;
+}
