@@ -38,3 +38,24 @@ a:hover{
     position: absolute;
     bottom: 0%;
 }
+
+#dropdown{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#drop-bttn{
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+}
+
+#drop-menu{
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+}
+
+#item:hover{
+    background-color: var(--tertiary-color);
+}
