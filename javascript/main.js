@@ -29,6 +29,25 @@ fetch("city_coordinates.csv")
       li.textContent = `${item.city}, ${item.country}`;
 
       dropMenu.appendChild(li); // Append the list item to the dropdown menu
+      // Add event listener to the list item
+      li.addEventListener("click", function() {
+            const lon = item.longitude;
+            const lat = item.latitude;
+            const unit = 'metric';
+            console.log(`lon: ${lon} , lat: ${lat}`);
+
+            const apiUrl = `http://www.7timer.info/bin/astro.php?lon=${lon}&lat=${lat}&unit=${unit}&output=json`;
+
+            fetch(apiUrl)
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                console.log(`Date: ${data.init} , Time: ${data.dataseries[0].timepoint} , temp: ${data.dataseries[0].temp2m} , Cloud cover: ${data.dataseries[0].cloudcover}, Wind speed: ${data.dataseries[0].wind10m.speed} , Wind direction: ${data.dataseries[0].wind10m.direction}`);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+       });
     });
   })
   .catch(error => {
