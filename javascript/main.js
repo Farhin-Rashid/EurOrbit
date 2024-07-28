@@ -1,3 +1,4 @@
+// Parse the csv file
 fetch("city_coordinates.csv")
   .then(response => response.text())
   .then(csv => {
@@ -19,31 +20,39 @@ fetch("city_coordinates.csv")
     }
 
     // Add the data to the dropdown menu
-    const dropMenu = document.getElementById("drop-menu"); // Get the dropdown menu element
+    const dropMenu = document.getElementById("drop-menu"); 
 
     result.forEach(item => {
-      const li = document.createElement("li"); // Create a new list item element
+    const li = document.createElement("li"); 
       li.classList.add("dropdown-item")
 
-      // Set the text content of the list item to display the data
       li.textContent = `${item.city}, ${item.country}`;
 
-      dropMenu.appendChild(li); // Append the list item to the dropdown menu
+      dropMenu.appendChild(li); 
+
+      
       // Add event listener to the list item
       li.addEventListener("click", function() {
+            // Create container to display data
+            const infoDiv = document.getElementById("weather-info")
+            const info = document.createElement("p");
+            info.classList.add("info")
+            infoDiv.appendChild(info)
+            
             const lon = item.longitude;
             const lat = item.latitude;
             const unit = 'metric';
             const product = 'civillight';
             console.log(`lon: ${lon} , lat: ${lat}`);
 
+            // API call
             const apiUrl = `http://www.7timer.info/bin/astro.php?lon=${lon}&lat=${lat}&product=${product}&unit=${unit}&output=json`;
 
             fetch(apiUrl)
             .then(response => response.json())
             .then(data => {
                 console.log(data);
-                console.log(`Date: ${data.init} , temp: ${data.dataseries[0].temp2m} , Cloud cover: ${data.dataseries[0].cloudcover}, Wind speed: ${data.dataseries[0].wind10m.speed} , Wind direction: ${data.dataseries[0].wind10m.direction}`);
+                info.innerText = `Date: ${data.init} \n temp: ${data.dataseries[0].temp2m} \n Cloud cover: ${data.dataseries[0].cloudcover} \n Wind speed: ${data.dataseries[0].wind10m.speed} \n Wind direction: ${data.dataseries[0].wind10m.direction}`
             })
             .catch(error => {
                 console.error('Error:', error);
