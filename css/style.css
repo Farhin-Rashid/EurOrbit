@@ -65,3 +65,18 @@ a:hover{
 .dropdown-item:hover{
     background-color: var(--tertiary-color) !important;
 }
+
+.weather-info{
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+    position: absolute;
+    left: 50%;
+    top: 60%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.6);
+    z-index: -1;
+}
+
+.info{
+    padding: 16px;
+}
