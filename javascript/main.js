@@ -34,15 +34,16 @@ fetch("city_coordinates.csv")
             const lon = item.longitude;
             const lat = item.latitude;
             const unit = 'metric';
+            const product = 'civillight';
             console.log(`lon: ${lon} , lat: ${lat}`);
 
-            const apiUrl = `http://www.7timer.info/bin/astro.php?lon=${lon}&lat=${lat}&unit=${unit}&output=json`;
+            const apiUrl = `http://www.7timer.info/bin/astro.php?lon=${lon}&lat=${lat}&product=${product}&unit=${unit}&output=json`;
 
             fetch(apiUrl)
             .then(response => response.json())
             .then(data => {
                 console.log(data);
-                console.log(`Date: ${data.init} , Time: ${data.dataseries[0].timepoint} , temp: ${data.dataseries[0].temp2m} , Cloud cover: ${data.dataseries[0].cloudcover}, Wind speed: ${data.dataseries[0].wind10m.speed} , Wind direction: ${data.dataseries[0].wind10m.direction}`);
+                console.log(`Date: ${data.init} , temp: ${data.dataseries[0].temp2m} , Cloud cover: ${data.dataseries[0].cloudcover}, Wind speed: ${data.dataseries[0].wind10m.speed} , Wind direction: ${data.dataseries[0].wind10m.direction}`);
             })
             .catch(error => {
                 console.error('Error:', error);
